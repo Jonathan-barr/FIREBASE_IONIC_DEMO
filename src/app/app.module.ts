@@ -8,6 +8,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminModule } from './admin/admin.module';
+import { AngularFireModule } from '@angular/fire/compat';
+import {environment} from '../environments/environment.prod';
+import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +19,9 @@ import { AdminModule } from './admin/admin.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     PagesModule,
-    AdminModule
+    AdminModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

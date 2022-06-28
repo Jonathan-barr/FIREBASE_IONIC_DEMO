@@ -1,0 +1,7 @@
+{
+  "name": "app05_ps",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -8,7 +8,7 @@
       </ion-button>
 
       <ion-button (click)="nuevoProducto()">
-        <ion-icon slot="icon-only" name="newspaper-outline">
+        <ion-icon slot="icon-only" name="duplicate-outline">
         </ion-icon>
       </ion-button>
     </ion-buttons>
@@ -60,4 +60,20 @@
 
   </ion-list>
 </div>
+
+  <ion-list>
+    <ion-item *ngFor="let registro of productos">
+      <ion-label>{{registro.nombre}}</ion-label>
+      <ion-label>{{registro.stock}}</ion-label>
+      <ion-buttons>
+        <ion-button (click)="newproducto=registro ; enableNuevo = true">
+          <ion-icon slot="icon-only" name="create-outline" color="primary"></ion-icon>
+        </ion-button>
+        <ion-button (click)="presentAlertConfirm(registro)">
+          <ion-icon slot="icon-only" name="trash-outline" color="danger"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

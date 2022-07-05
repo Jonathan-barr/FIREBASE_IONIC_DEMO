@@ -4,6 +4,7 @@ import { Producto } from 'src/app/models/producto.model';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { FirestorageService } from '../../services/firestorage.service';
 
 @Component({
   selector: 'app-productos',
@@ -21,7 +22,8 @@ export class ProductosComponent implements OnInit {
   constructor(private menuCtrl: MenuController ,
               private database: FirestoreService,
               public toastController: ToastController,
-              public alertController: AlertController ) { }
+              public alertController: AlertController,
+              public fileStore: FirestorageService ) { }
 
   ngOnInit() {
 
@@ -118,16 +120,26 @@ export class ProductosComponent implements OnInit {
     await alert.present();
 }
 // Cargar imagen
-uploadImage(file: any){
+async uploadImage(file: any){ // aqui agregue el async
 
-  if(file.target.files && file.target.files[0]){
-      const reader = new FileReader();
-      reader.onload = ((image)=>{
-        this.newImage =image.target.result as string;
-        console.log(this.newImage);
-      });
-      reader.readAsDataURL(file.target.files[0]);
-  }
+  /* if(file.target.files && file.target.files[0]){
+  //     const reader = new FileReader();
+  //     reader.onload = ((image)=>{
+  //       this.newImage =image.target.result as string;
+  //       console.log(this.newImage);
+  //     });
+  //     reader.readAsDataURL(file.target.files[0]);
+  // }*/
 
+    const archivo = file.target.files[0];
+    const path = 'Productos';
+    const name = 'prueba1';
+    const res = await this.fileStore.cargarImagen(archivo,path,name);
+    console.log(res);
+    // this.fileStore.cargarImagen(archivo,path,name).then( res =>{
+    //   console.log(res);
+    // }).catch(error => {
+    //   this.print('No se pudo cargar la Imagen');
+    // });
 }
 }

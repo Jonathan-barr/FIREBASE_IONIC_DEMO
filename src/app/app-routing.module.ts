@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from './pages/home/home.component';
 import { ProductosComponent } from './admin/productos/productos.component';
-
+import { ScannerComponent } from './admin/scanner/scanner.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'producto',
     component: ProductosComponent
+  },
+  {
+    path: 'scanner',
+    component: ScannerComponent
   },
   {
     path: '',

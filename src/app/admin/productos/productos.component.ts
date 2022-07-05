@@ -16,6 +16,7 @@ export class ProductosComponent implements OnInit {
   newproducto: Producto;
   path='productos';
   productos: Producto[];
+  newImage = '';
 
   constructor(private menuCtrl: MenuController ,
               private database: FirestoreService,
@@ -41,7 +42,8 @@ export class ProductosComponent implements OnInit {
       descripcion:'',
       stock: null,
       precio: null,
-      fecha: new Date()
+      fecha: new Date(),
+      imagen: ''
     };
 
   }
@@ -114,6 +116,18 @@ export class ProductosComponent implements OnInit {
     });
 
     await alert.present();
+}
+// Cargar imagen
+uploadImage(file: any){
+
+  if(file.target.files && file.target.files[0]){
+      const reader = new FileReader();
+      reader.onload = ((image)=>{
+        this.newImage =image.target.result as string;
+        console.log(this.newImage);
+      });
+      reader.readAsDataURL(file.target.files[0]);
+  }
 
 }
 }

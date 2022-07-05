@@ -6,4 +6,5 @@ export interface Producto {
   stock: number;
   precio: number;
   fecha: Date;
+  imagen: string;
 }

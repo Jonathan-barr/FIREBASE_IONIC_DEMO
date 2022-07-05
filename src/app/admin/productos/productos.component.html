@@ -19,21 +19,39 @@
 
 </ion-header>
 <ion-content>
-  <div class="alert alert-primary text_subtitulo" role="alert">
-    Configuracion de productos
-  </div>
-
-
 
 <div *ngIf="enableNuevo">
+  <div class="alert alert-primary text_subtitulo" role="alert">
+    Registro de Productos
+  </div>
+
   <ion-list>
     <ion-item>
       <ion-buttons slot="end">
-        <ion-button (click)="enableNuevo=false">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
+
+        <ion-button (click)="guardarProducto()">
+           <ion-icon slot="icon-only" name="save-outline"></ion-icon>
         </ion-button>
+
+        <ion-button>
+         <label for="uploadFile">
+           <ion-icon slot="icon-only" name="image-outline"> </ion-icon>
+         </label>
+         <input (change) = "uploadImage($event)" id="uploadFile"   style="display: none"  type="file" accept="image/*" >
+        </ion-button>
+
+
+        <ion-button (click)="enableNuevo=false">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+
       </ion-buttons>
+
     </ion-item>
+
+    <img [src]="newImage" class="center">
+
+
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
       <ion-input  [(ngModel)]="newproducto.nombre" type="text" placeholder="Nombre del Producto"></ion-input>
@@ -52,13 +70,17 @@
       <ion-input [(ngModel)]="newproducto.precio" type="numer" placeholder="Precio del Producto"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <!-- <ion-item>
       <div class="d-grid gap-2">
         <button class="btn btn-primary" type="button" (click)="guardarProducto()">Guardar</button>
       </div>
-    </ion-item>
+    </ion-item> -->
 
   </ion-list>
+</div>
+
+<div class="alert alert-primary text_subtitulo" role="alert">
+Listado de Productos
 </div>
 
   <ion-list>

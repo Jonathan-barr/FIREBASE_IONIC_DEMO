@@ -22,7 +22,7 @@ export class FirestoreService {
 
     }
 
- 
+
 
   deleteDoc(path: string, id: string){
     return this.database.collection(path).doc(id).delete();

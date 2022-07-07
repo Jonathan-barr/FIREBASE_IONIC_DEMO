@@ -18,6 +18,7 @@ export class ProductosComponent implements OnInit {
   path='productos';
   productos: Producto[];
   newImage = '';
+  newFile: any;
 
   constructor(private menuCtrl: MenuController ,
               private database: FirestoreService,
@@ -50,10 +51,18 @@ export class ProductosComponent implements OnInit {
 
   }
 
-  guardarProducto(){
+  async guardarProducto(){
     if(this.newproducto.nombre !== ''){
-    console.log(this.newproducto);
-    this.database.newDoc(this.newproducto,this.path,this.newproducto.id).then(res =>{
+      // obtiene el url del registro de la imagen
+      //const archivo = file.target.files[0];
+      const path = 'Productos';
+      const url = await this.fileStore.cargarImagen(this.newFile,path,this.newproducto.nombre);
+      this.newproducto.imagen=url;
+
+      //console.log(this.newproducto);
+
+    // guarda la información del producto en el store
+      this.database.newDoc(this.newproducto,this.path,this.newproducto.id).then(res =>{
       this.nuevoProducto();
       this.print('Producto Guardado con Exito');
     }).catch(error => {
@@ -122,20 +131,17 @@ export class ProductosComponent implements OnInit {
 // Cargar imagen
 async uploadImage(file: any){ // aqui agregue el async
 
-  /* if(file.target.files && file.target.files[0]){
-  //     const reader = new FileReader();
-  //     reader.onload = ((image)=>{
-  //       this.newImage =image.target.result as string;
-  //       console.log(this.newImage);
-  //     });
-  //     reader.readAsDataURL(file.target.files[0]);
-  // }*/
+   if(file.target.files && file.target.files[0]){
+    this.newFile = file.target.files[0];
+      const reader = new FileReader();
+      reader.onload = ((image)=>{
+        this.newproducto.imagen =image.target.result as string;
+      });
+      reader.readAsDataURL(file.target.files[0]);
+  }
 
-    const archivo = file.target.files[0];
-    const path = 'Productos';
-    const name = 'prueba1';
-    const res = await this.fileStore.cargarImagen(archivo,path,name);
-    console.log(res);
+
+    //console.log(res);
     // this.fileStore.cargarImagen(archivo,path,name).then( res =>{
     //   console.log(res);
     // }).catch(error => {

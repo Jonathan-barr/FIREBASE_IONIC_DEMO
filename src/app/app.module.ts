@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminModule } from './admin/admin.module';
@@ -22,7 +22,8 @@ import{ AngularFireStorageModule} from '@angular/fire/compat/Storage';
     AdminModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFireAuthModule
   ],
   providers: [
     BarcodeScanner,

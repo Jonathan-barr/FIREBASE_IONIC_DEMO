@@ -47,7 +47,7 @@
 
     </ion-item>
 
-    <img [src]="newImage" class="center">
+    <img [src]="newproducto.imagen" class="center">
 
 
     <ion-item>
@@ -86,7 +86,7 @@ Listado de Productos
       <ion-label>{{registro.nombre}}</ion-label>
       <ion-label>{{registro.stock}}</ion-label>
       <ion-buttons>
-        <ion-button (click)="newproducto=registro ; enableNuevo = true">
+        <ion-button (click)="newproducto=registro; enableNuevo = true">
           <ion-icon slot="icon-only" name="create-outline" color="primary"></ion-icon>
         </ion-button>
         <ion-button (click)="presentAlertConfirm(registro)">

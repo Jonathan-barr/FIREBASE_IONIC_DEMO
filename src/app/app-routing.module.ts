@@ -3,7 +3,12 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from './pages/home/home.component';
 import { ProductosComponent } from './admin/productos/productos.component';
 import { ScannerComponent } from './admin/scanner/scanner.component';
+import { UsersComponent } from './pages/users/users.component';
 const routes: Routes = [
+  {
+    path: 'user',
+    component: UsersComponent
+  },
   {
     path: 'home',
     component: HomeComponent
